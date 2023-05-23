@@ -35,10 +35,5 @@ class WorkingDirectoryContext(val dir: Path) : Closeable {
   }
 
   override fun close() {
-    kotlin.runCatching {
-      Files.walk(dir).sorted(Comparator.reverseOrder()).forEach(Files::delete)
-    }.onFailure {
-      logger.log(Level.SEVERE, "Directory cleanup failed.", it)
-    }
   }
 }
