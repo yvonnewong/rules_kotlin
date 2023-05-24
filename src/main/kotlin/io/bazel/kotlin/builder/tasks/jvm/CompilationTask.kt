@@ -173,6 +173,7 @@ internal fun JvmCompilationTask.kspArgs(
     plugin(plugins.kspSymbolProcessingApi) {
       flag("-Xallow-no-source-files")
 
+      System.err.println("KSP generatedSources: ${directories.generatedSources}")
       val values = arrayOf(
         "apclasspath" to listOf(inputs.processorpathsList.joinToString(File.pathSeparator)),
         // projectBaseDir shouldn't matter because incremental is disabled
