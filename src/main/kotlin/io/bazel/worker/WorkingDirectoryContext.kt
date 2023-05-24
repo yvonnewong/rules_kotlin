@@ -30,6 +30,7 @@ class WorkingDirectoryContext(val dir: Path) : Closeable {
     val logger: Logger = Logger.getLogger(WorkingDirectoryContext::class.java.canonicalName)
     inline fun <T> use(forWork: WorkingDirectoryContext.() -> T) =
       WorkingDirectoryContext(Files.createTempDirectory("pwd")).use { wd ->
+        logger.log(Level.INFO, "Using temp working directory: ${wd.dir}")
         wd.forWork()
       }
   }
